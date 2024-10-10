@@ -1,0 +1,19 @@
+name: Show Artifacts
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get Code
+      uses: actions/checkout@v4
+    - name: Install PNPM
+      uses: pnpm/action-setup@v4
+      with: 
+        version: 9
+    - name: Bild Project
+      run: pnpm run build
+    - name: Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        path: dist
+    
