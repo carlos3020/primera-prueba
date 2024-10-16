@@ -1,0 +1,20 @@
+name: Download automatically artifacts
+on: push
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set File
+      run: touch coverage-report.zip
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-report
+        path: ./coverage-report.zip
+  download:
+    needs: upload
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download Artifact
+      uses: actions/download-artifact@v4
+      
