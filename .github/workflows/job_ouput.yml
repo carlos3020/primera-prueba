@@ -1,0 +1,10 @@
+name: Job Outputs
+on: push
+jobs:
+  job_output:
+    runs-on: ubuntu-latest
+    outputs:
+      show: ${{ steps.Generate.outputs.deploy-url}}
+    steps:
+      - id: Generate
+        run: echo "deploy-url=https://my-app.example.com" >> "$GITHUB_OUTPUT"
